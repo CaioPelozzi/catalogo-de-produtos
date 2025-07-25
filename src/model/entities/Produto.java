@@ -56,4 +56,18 @@ public class Produto {
     public void setEmEstoque(boolean emEstoque) {
         this.emEstoque = emEstoque;
     }
+
+    public String emEstoqueString() {
+        if (this.isEmEstoque()) {
+            return "Sim";
+        }
+        else {
+            return "Não";
+        }
+    }
+    @Override
+    public String toString() {
+        return "ID: " + this.getId() + " Nome: " + this.getNome() + " Preço: " + this.getPreco()
+            + " Cateogoria: " + this.getCategoria() + " Em estoque: " + this.emEstoqueString();
+    }
 }
