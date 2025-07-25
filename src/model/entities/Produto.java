@@ -1,20 +1,24 @@
 package model.entities;
+import controller.CatalogoProdutos;
 import model.enums.Categoria;
 
 public class Produto {
 
-    private int id = 0;
+    private int id;
     private String nome;
     private double preco;
     private Categoria categoria;
     private boolean emEstoque;
+
+    public static int idIteracao = 1;
+
 
     public Produto(String nome ,double preco ,Categoria categoria ,boolean emEstoque) {
         this.nome = nome;
         this.preco = preco;
         this.categoria = categoria;
         this.emEstoque = emEstoque;
-        this.id++;
+        this.id = idIteracao++;
     }
 
     public int getId() {

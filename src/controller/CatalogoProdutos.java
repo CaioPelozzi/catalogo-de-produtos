@@ -15,6 +15,7 @@ public class CatalogoProdutos {
 
     public void adicionarProduto(String nome ,double preco ,Categoria categoria ,boolean emEstoque) {
         produtos.add(new Produto(nome, preco, categoria, emEstoque));
+
     }
 
     public List<Produto> imprimirLista() {
