@@ -1,4 +1,4 @@
-package model.utils;
+package service;
 
 import model.entities.Produto;
 import model.enums.Categoria;

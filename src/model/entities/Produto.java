@@ -1,5 +1,4 @@
 package model.entities;
-import controller.CatalogoProdutos;
 import model.enums.Categoria;
 
 public class Produto {
