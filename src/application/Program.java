@@ -32,7 +32,6 @@ public class Program {
         catch (IOException e) {
             System.out.println("Erro ao ler o arquivo " + e.getMessage());
         }
-a
 
 
     }
