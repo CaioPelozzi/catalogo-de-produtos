@@ -1,7 +1,7 @@
 package application;
 
 
-import controller.CatalogoProdutos;
+import service.CatalogoProdutos;
 import model.enums.Categoria;
 
 import java.io.BufferedReader;
@@ -32,7 +32,7 @@ public class Program {
         catch (IOException e) {
             System.out.println("Erro ao ler o arquivo " + e.getMessage());
         }
-
+a
 
 
     }
