@@ -12,7 +12,6 @@ public class Produto {
 
     public static int idIteracao = 1;
 
-
     public Produto(String nome ,double preco ,Categoria categoria ,boolean emEstoque) {
         this.nome = nome;
         this.preco = preco;

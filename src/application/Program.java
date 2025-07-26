@@ -23,7 +23,7 @@ public class Program {
                 produtos.adicionarProduto(linhasArquivo[0], Double.parseDouble(linhasArquivo[1]),
                         Categoria.valueOf(categoriaUpperCase), Boolean.parseBoolean(linhasArquivo[3]));
             }
-            System.out.println(produtos);
+            //System.out.println(produtos);
 
         }
         catch (FileNotFoundException e){
@@ -32,6 +32,8 @@ public class Program {
         catch (IOException e) {
             System.out.println("Erro ao ler o arquivo " + e.getMessage());
         }
+
+
 
     }
 }
