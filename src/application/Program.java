@@ -1,39 +1,22 @@
 package application;
 
+import model.entities.Produto;
+import utils.ArquivoProdutoReader;
 
-import service.CatalogoProdutos;
-import model.enums.Categoria;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
-        CatalogoProdutos produtos = new CatalogoProdutos();
+        Scanner sc = new Scanner(System.in);
 
-        try(FileReader fr = new FileReader("C:/Users/caiop/in.txt");
-            BufferedReader bf = new BufferedReader(fr)) {
+        System.out.print("Digite o caminho do arquivo: ");
+        String caminho = sc.next();
 
-            String linha;
-            while((linha = bf.readLine()) != null) {
-                String[] linhasArquivo = linha.split(", ");
-                String categoriaUpperCase = linhasArquivo[2].toUpperCase();
-                produtos.adicionarProduto(linhasArquivo[0], Double.parseDouble(linhasArquivo[1]),
-                        Categoria.valueOf(categoriaUpperCase), Boolean.parseBoolean(linhasArquivo[3]));
-            }
-            //System.out.println(produtos);
+        List<Produto> produtos = new ArrayList<>(ArquivoProdutoReader.lerArquivoProdutos(caminho));
 
-        }
-        catch (FileNotFoundException e){
-            System.out.println("Erro ao encontrar o arquivo " + e.getMessage());
-        }
-        catch (IOException e) {
-            System.out.println("Erro ao ler o arquivo " + e.getMessage());
-        }
-a
-
+        System.out.println(produtos);
 
     }
 }
