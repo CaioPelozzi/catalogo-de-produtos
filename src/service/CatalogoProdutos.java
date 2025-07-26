@@ -1,4 +1,4 @@
-package service;
+/*package service;
 
 import model.entities.Produto;
 import model.enums.Categoria;
@@ -30,4 +30,4 @@ public class CatalogoProdutos {
         }
         return sb.toString();
     }
-}
+}*/
