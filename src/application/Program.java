@@ -16,7 +16,9 @@ public class Program {
 
         List<Produto> produtos = new ArrayList<>(ArquivoProdutoReader.lerArquivoProdutos(caminho));
 
-        System.out.println(produtos);
+        //System.out.println(produtos);
+
+
 
     }
 }

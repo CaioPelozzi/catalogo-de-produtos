@@ -12,10 +12,9 @@ public class FiltroCatalogoProdutos {
         return produtos.stream().filter(Produto::isEmEstoque).mapToDouble(Produto::getPreco).sum();
     }
 
-    public static List<String> produtosDisponivelEstoque(List<Produto> produtos) {
+    public static List<Produto> produtosDisponivelEstoque(List<Produto> produtos) {
         return produtos.stream()
                 .filter(Produto::isEmEstoque)
-                .map(p -> "ID: " + p.getId() + " - " + p.getNome() + " (" + p.getCategoria() + ")")
                 .collect(Collectors.toList());
     }
 
@@ -63,19 +62,17 @@ public class FiltroCatalogoProdutos {
         return produtos.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
     }
 
-    public static List<String> buscarPorCategoria(List<Produto> produtos, String categoria) {
+    public static List<Produto> buscarPorCategoria(List<Produto> produtos, String categoria) {
         String catUpperCase = categoria.toUpperCase();
         Categoria categoriaValor = Categoria.valueOf(catUpperCase);
         return produtos.stream()
-                .filter(p -> categoriaValor.equals(p.getCategoria()))
-                .map(p -> p.getNome() + " - " + p.getPreco()).collect(Collectors.toList());
+                .filter(p -> categoriaValor.equals(p.getCategoria())).collect(Collectors.toList());
 
     }
 
-    public static List<String> buscarProdutoSemEstoque(List<Produto> produtos) {
+    public static List<Produto> buscarProdutoSemEstoque(List<Produto> produtos) {
         return produtos.stream()
                 .filter(p -> !p.isEmEstoque())
-                .map(p -> "ID: " + p.getId() + " - " + p.getNome() + " (" + p.getCategoria() + ")")
                 .collect(Collectors.toList());
     }
 }
