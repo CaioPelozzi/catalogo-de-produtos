@@ -1,14 +1,24 @@
 package application;
 
-import model.enums.Categoria;
+import model.entities.Produto;
+import utils.ArquivoProdutoReader;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Digite o caminho do arquivo: ");
+        String caminho = sc.next();
+
+        List<Produto> produtos = new ArrayList<>(ArquivoProdutoReader.lerArquivoProdutos(caminho));
+
+        //System.out.println(produtos);
+
+
 
     }
 }
