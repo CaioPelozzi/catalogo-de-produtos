@@ -12,9 +12,9 @@ import java.util.List;
 
 public class ArquivoProdutoReader {
 
-    public static List<Produto> lerArquivoProdutos(String caminho) {
+    public static List<Produto> lerArquivoProdutos(String caminhoArquivo) {
         List<Produto> produtos = new ArrayList<>();
-        try (FileReader fr = new FileReader(caminho); BufferedReader br = new BufferedReader(fr)) {
+        try (FileReader fr = new FileReader(caminhoArquivo); BufferedReader br = new BufferedReader(fr)) {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] linhasArquivo = linha.split(", ");

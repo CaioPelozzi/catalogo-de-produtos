@@ -4,5 +4,7 @@ public enum Categoria {
 
     ROUPA,
     LIVRO,
-    ELETRONICO;
+    ELETRONICO,
+    DOMESTICO,
+    COMIDA;
 }

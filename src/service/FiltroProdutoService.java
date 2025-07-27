@@ -6,7 +6,7 @@ import model.enums.Categoria;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FiltroCatalogoProdutos {
+public class FiltroProdutoService {
 
     public static double calcularValorTotalProdutos(List<Produto> produtos) {
         return produtos.stream().filter(Produto::isEmEstoque).mapToDouble(Produto::getPreco).sum();
@@ -18,32 +18,23 @@ public class FiltroCatalogoProdutos {
                 .collect(Collectors.toList());
     }
 
-    /* Como eu fiz sozinho */
-    public static double calcularValorTotalPorCategoria(List<Produto> produtos, Categoria categoria) {
+
+    public static double calcularValorTotalPorCategoria(List<Produto> produtos, String categoria) {
+
+        String categoriaUpperCase = categoria.toUpperCase();
+        Categoria categoriaFormat = Categoria.valueOf(categoriaUpperCase);
         return produtos.stream()
                 .filter(Produto::isEmEstoque)
                 .mapToDouble(p -> {
-                    if(p.getCategoria() == categoria) {
+                    if(p.getCategoria() == categoriaFormat) {
                         return p.getPreco();
                     }
                     else {return 0.0;}
                 }).sum();
     }
 
-    /* Perguntei se o metodo a cima estava bom para o IA e falou que está bom só faltava refinar um pouco e me deu
-    essa solução, porem não vou usar ja que a minha está certa mas entendi o que devo melhorar!
-
-    public static double calcularValorTotalPorCategoria(List<Produto> produtos, Categoria categoria) {
-        return produtos.stream()
-                .filter( p -> p.isEmEstoque() && p.getCategoria() == categoria)
-                .mapToDouble(Produto::getPreco).sum();
-    }
-    */
-
     public static List<Produto> buscarProdutoPorNome(List<Produto> produtos, String nome) {
-
         return produtos.stream()
-                .filter(p -> p.getNome().equalsIgnoreCase(nome.trim()))
                 .filter(p -> p.getNome().toUpperCase().contains(nome.toUpperCase()))
                 .collect(Collectors.toList());
     }
