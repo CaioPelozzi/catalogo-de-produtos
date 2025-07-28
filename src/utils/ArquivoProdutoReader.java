@@ -23,9 +23,11 @@ public class ArquivoProdutoReader {
                         Categoria.valueOf(categoriaUpperCase), Boolean.parseBoolean(linhasArquivo[3])));
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Não foi possível encontrar o arquivo" + e.getMessage());
+            System.out.println("Não foi possível encontrar o arquivo " + e.getMessage());
+            System.exit(1);
         } catch (IOException e) {
-            System.out.println("Não foi possível ler o arquivo" + e.getMessage()) ;
+            System.out.println("Não foi possível ler o arquivo " + e.getMessage());
+            System.exit(1);
         }
         return produtos;
     }

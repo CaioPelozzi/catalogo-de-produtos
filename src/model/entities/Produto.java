@@ -23,53 +23,28 @@ public class Produto {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
+    public double getPreco() { return preco; }
 
     public Categoria getCategoria() {
         return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
     }
 
     public boolean isEmEstoque() {
         return emEstoque;
     }
 
-    public void setEmEstoque(boolean emEstoque) {
-        this.emEstoque = emEstoque;
+    public String emEstoqueString() {
+        if (this.isEmEstoque()) { return "Sim"; }
+        else { return "Não"; }
     }
 
-    public String emEstoqueString() {
-        if (this.isEmEstoque()) {
-            return "Sim";
-        }
-        else {
-            return "Não";
-        }
-    }
     @Override
     public String toString() {
-        return "ID: " + this.getId() + " Nome: " + this.getNome() + " Preço: " + this.getPreco()
-            + " Cateogoria: " + this.getCategoria() + " Em estoque: " + this.emEstoqueString();
+        return "ID: " + this.getId() + " | Nome: " + this.getNome() + " | Preço: " + this.getPreco()
+            + " | Cateogoria: " + this.getCategoria() + " | Em estoque: " + this.emEstoqueString();
     }
 }

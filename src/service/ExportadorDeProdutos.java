@@ -3,6 +3,7 @@ package service;
 import model.entities.Produto;
 import utils.ArquivoProdutoWriter;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,20 +29,26 @@ public class ExportadorDeProdutos {
                 break;
 
             case 4:
-                System.out.print("Digite o valor mínimo:");
-                double min = sc.nextDouble();
-                System.out.print("Digite o valor máximo: ");
-                double max = sc.nextDouble();
-                List<Produto> produtoFaixaPreco = FiltroProdutoService.buscarPorFaixaPreco(produtos, min, max);
-                ArquivoProdutoWriter.gerarArquivoProdutos(produtoFaixaPreco);
-                break;
-
+                try {
+                    System.out.print("Digite o valor mínimo: ");
+                    double min = sc.nextDouble();
+                    System.out.print("Digite o valor máximo: ");
+                    double max = sc.nextDouble();
+                    List<Produto> produtoFaixaPreco = FiltroProdutoService.buscarPorFaixaPreco(produtos, min, max);
+                    ArquivoProdutoWriter.gerarArquivoProdutos(produtoFaixaPreco);
+                    break;
+                }
+                catch (InputMismatchException e) {
+                    throw new InputMismatchException("Por favor! Entre com números!");
+                }
             case 5:
                 System.out.print("Digite a categoria: ");
                 String categoria = sc.nextLine();
                 List<Produto> produtoPorCategoria = FiltroProdutoService.buscarPorCategoria(produtos, categoria);
                 ArquivoProdutoWriter.gerarArquivoProdutos(produtoPorCategoria);
                 break;
+            default:
+                throw new IllegalArgumentException("Opção " + opcao + " inválida!");
 
         }
     }

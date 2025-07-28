@@ -20,23 +20,33 @@ public class FiltroProdutoService {
 
 
     public static double calcularValorTotalPorCategoria(List<Produto> produtos, String categoria) {
-
-        String categoriaUpperCase = categoria.toUpperCase();
-        Categoria categoriaFormat = Categoria.valueOf(categoriaUpperCase);
-        return produtos.stream()
-                .filter(Produto::isEmEstoque)
-                .mapToDouble(p -> {
-                    if(p.getCategoria() == categoriaFormat) {
-                        return p.getPreco();
-                    }
-                    else {return 0.0;}
-                }).sum();
+        try {
+            String categoriaUpperCase = categoria.toUpperCase();
+            Categoria categoriaFormat = Categoria.valueOf(categoriaUpperCase);
+            return produtos.stream()
+                    .filter(Produto::isEmEstoque)
+                    .mapToDouble(p -> {
+                        if (p.getCategoria() == categoriaFormat) {
+                            return p.getPreco();
+                        } else {
+                            return 0.0;
+                        }
+                    }).sum();
+        }
+        catch(IllegalArgumentException e) {
+            throw new IllegalArgumentException("Categoria '" + categoria + "' inválida!");
+        }
     }
 
     public static List<Produto> buscarProdutoPorNome(List<Produto> produtos, String nome) {
-        return produtos.stream()
+        List<Produto> produtosPorNome = produtos.stream()
                 .filter(p -> p.getNome().toUpperCase().contains(nome.toUpperCase()))
-                .collect(Collectors.toList());
+                .toList();
+
+        if(produtosPorNome.isEmpty()) {
+            throw new IllegalArgumentException("Não existe produto com esse nome!");
+        }
+        else { return produtosPorNome; }
     }
 
     public static List<Produto> buscarPorFaixaPreco(List<Produto> produtos, double min, double max) {
@@ -50,15 +60,22 @@ public class FiltroProdutoService {
     }
 
     public static Produto buscarPorId(List<Produto> produtos, int id) {
-        return produtos.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
+        return produtos.stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     public static List<Produto> buscarPorCategoria(List<Produto> produtos, String categoria) {
-        String catUpperCase = categoria.toUpperCase();
-        Categoria categoriaValor = Categoria.valueOf(catUpperCase);
-        return produtos.stream()
-                .filter(p -> categoriaValor.equals(p.getCategoria())).collect(Collectors.toList());
-
+        try {
+            String catUpperCase = categoria.toUpperCase();
+            Categoria categoriaValor = Categoria.valueOf(catUpperCase);
+            return produtos.stream()
+                    .filter(p -> categoriaValor.equals(p.getCategoria())).collect(Collectors.toList());
+        }
+        catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Categoria " + categoria + " inválida!");
+        }
     }
 
     public static List<Produto> buscarProdutoSemEstoque(List<Produto> produtos) {
