@@ -37,7 +37,7 @@ public class Program {
                 switch (opcaoFiltro) {
                     case 1:
                         double valorTotalProdutos = FiltroProdutoService.calcularValorTotalProdutos(produtos);
-                        System.out.println("O valor total é de: " + valorTotalProdutos);
+                        System.out.printf("O valor total é de: %.2f%n", valorTotalProdutos);
                         System.out.println("----- FIM! -----");
                         break;
 
@@ -45,7 +45,7 @@ public class Program {
                         System.out.println("Informe a categoria: ");
                         String categoriaString = sc.nextLine();
                         double valorTotalPorCategoria = FiltroProdutoService.calcularValorTotalPorCategoria(produtos, categoriaString);
-                        System.out.println("O valor total dos produtos da categoria " + categoriaString + " é de: " + valorTotalPorCategoria);
+                        System.out.printf("O valor total dos produtos da categoria %s é de: %.2f%n", categoriaString, valorTotalPorCategoria);
                         System.out.println("----- FIM! -----");
                         break;
 
@@ -54,7 +54,8 @@ public class Program {
                         int idFiltro = sc.nextInt();
                         Produto produtoFiltroID = FiltroProdutoService.buscarPorId(produtos, idFiltro);
                         if (produtoFiltroID == null) {
-                            throw new IllegalArgumentException("Esse ID não existe!");
+                            System.out.println("O ID informado não existe!");
+                            break;
                         } else {
                             System.out.println("O produto do ID " + idFiltro + " é: " + produtoFiltroID);
                             System.out.println("----- FIM! -----");

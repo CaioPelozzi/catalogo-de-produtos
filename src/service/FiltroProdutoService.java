@@ -24,14 +24,9 @@ public class FiltroProdutoService {
             String categoriaUpperCase = categoria.toUpperCase();
             Categoria categoriaFormat = Categoria.valueOf(categoriaUpperCase);
             return produtos.stream()
-                    .filter(Produto::isEmEstoque)
-                    .mapToDouble(p -> {
-                        if (p.getCategoria() == categoriaFormat) {
-                            return p.getPreco();
-                        } else {
-                            return 0.0;
-                        }
-                    }).sum();
+                    .filter(Produto::isEmEstoque).filter(p -> p.getCategoria() == categoriaFormat)
+                    .mapToDouble(Produto::getPreco)
+                    .sum();
         }
         catch(IllegalArgumentException e) {
             throw new IllegalArgumentException("Categoria '" + categoria + "' inválida!");
