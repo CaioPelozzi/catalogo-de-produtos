@@ -58,7 +58,7 @@ public class Program {
                             break;
                         } else {
                             System.out.println("O produto do ID " + idFiltro + " é: " + produtoFiltroID);
-                            System.out.println("----- FIM! -----");
+                            System.out.println("------ FIM! ------");
                             break;
                         }
                     default:
